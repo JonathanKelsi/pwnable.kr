@@ -2,7 +2,7 @@
 
 ## Description
 
-welcome - 1pt
+bof - 5pt
 
 > Nana told me that buffer overflow is one of the most common software vulnerability. Is that true? <br><br>
 > Download : http://pwnable.kr/bin/bof
@@ -58,7 +58,7 @@ Using ```gdb``` to debug the program, and giving `AAAA` as input, we can see the
 0xffffd140:	0xdeadbeef	0x00000000	0xf7f9e000	0xf7e9694b
 ```
 
-The adress of `key` is `0xffffd140`, and the adress of `overflowme` is `0xffffd10c`. We can see that the distance between them is `52` bytes. This means that we need to write `0x34` bytes of junk data, followed by `0xcafebabe` in order to overwrite the value of `key`.
+The adress of `key` is `0xffffd140`, and the adress of `overflowme` is `0xffffd10c`. We can see that the distance between them is `52` bytes. This means that we need to write `52` bytes of junk data, followed by `0xcafebabe` in order to overwrite the value of `key`.
 
 ```python
 from pwn import *

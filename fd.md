@@ -2,7 +2,7 @@
 
 ## Description
 
-welcome - 1pt
+fd - 1pt
 
 > Mommy! what is a file descriptor in Linux? <br> <br>
 > try to play the wargame your self but if you are ABSOLUTE
