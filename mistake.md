@@ -118,7 +118,7 @@ The program starts by opening the file "/home/mistake/passworod/", which is owne
 
 Next, it appears to read the password from the file into a buffer, and then prompts the user for a password. The user's input is then XOR'd with the value 1, and then compared to the password read from the file. If the two values match, the program prints the flag.
 
-Taking a closer look at the opening of the password file, we see that `fd` is assigned the result of `open("/home/mistake/password",O_RDONLY,0400) < 0`, because of operator priority. 
+Taking a closer look at the opening of the password file, we see that `fd` isn't assigned with the actual file descriptor of the password file, but the result of the comparison `open("/home/mistake/password",O_RDONLY,0400) < 0`, because of operator priority. 
 
 This means that if the file is opened successfully, fd will be assigned the value `0`, which is the file descriptor for stdin. Thus, in order to pass the check, we need to enter two passwords: one that will be read when the program opens the file, and one that will be read when the program prompts the user for a password. Those two passwords must be the same, XOR'd with 1.
 
