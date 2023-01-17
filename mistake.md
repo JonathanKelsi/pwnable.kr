@@ -37,7 +37,7 @@ The following table lists the operators in order of decreasing priority. Operato
 | && | logical AND |
 | \|\| | logical OR |
 | ?: | conditional |
-| = += -= *= /= %= &= ^= |= <<= >>= | assignment |
+| = += -= *= /= %= &= ^= <<= >>= | assignment |
 | , | comma |
 
 
