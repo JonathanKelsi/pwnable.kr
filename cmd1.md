@@ -2,7 +2,7 @@
 
 ## Description
 
-cmd1 - 1pt
+cmd1 - 1 pt
 
 > Mommy! what is PATH environment in Linux? <br> <br>
 > ssh cmd1@pwnable.kr -p2222 (pw:guest)

@@ -2,7 +2,7 @@
 
 ## Description
 
-random - 1pt
+random - 1 pt
 
 > Daddy, teach me how to use random value in programming! <br> <br>
 > ssh random@pwnable.kr -p2222 (pw:guest)

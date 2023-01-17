@@ -2,7 +2,7 @@
 
 ## Description
 
-mistake - 1pt
+mistake - 1 pt
 
 >We all make mistakes, let's move on. <br>
 >(don't take this too seriously, no fancy hacking skill is required at all) <br> <br>

@@ -2,7 +2,7 @@
 
 ## Description
 
-flag - 7pt
+flag - 7 pt
 
 > Papa brought me a packed present! let's open it. <br> <br>
 > Download : http://pwnable.kr/bin/flag <br> <br>

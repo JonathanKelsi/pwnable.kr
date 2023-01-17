@@ -2,7 +2,7 @@
 
 ## Description
 
-blukat - 3pt
+blukat - 3 pt
 
 > Sometimes, pwnable is strange... <br>
 > hint: if this challenge is hard, you are a skilled player. <br> <br>

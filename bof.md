@@ -2,7 +2,7 @@
 
 ## Description
 
-bof - 5pt
+bof - 5 pt
 
 > Nana told me that buffer overflow is one of the most common software vulnerability. Is that true? <br><br>
 > Download : http://pwnable.kr/bin/bof
