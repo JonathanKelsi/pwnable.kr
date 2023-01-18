@@ -45,7 +45,7 @@ int main(int argc, char* argv[]){
 
 The program starts by calling the function `func` with `0xdeadbeef` as the `key` argument. The function `func` then creates a buffer of size 32, and calls ```gets``` to read input from the user. ```gets``` is a dangerous function because it does not check the length of the input, so it can cause a buffer overflow.
 
-Then, the program compares the value of the `key` to `0xcafebabe`. If the two are equal, it will give us a shell (with sufficient privileges). This means that we need to overwrite the value of `key` with `0xcafebabe` in order to get a shell.
+Then, the program compares the value of the `key` to `0xcafebabe`. If the two are equal, it will call `system(/bin/sh)`. This means that we need to overwrite the value of `key` with `0xcafebabe` in order to get a shell.
 
 Using ```gdb``` to debug the program, and giving `AAAA` as input, we can see the stack:
 
