@@ -1,4 +1,4 @@
-# blackjack
+# lotto
 
 ## Description
 
