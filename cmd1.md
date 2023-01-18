@@ -59,7 +59,7 @@ int main(int argc, char* argv[], char** envp){
 }
 ```
 
-The program first sets the `PATH` environment variable to `/thankyouverymuch`. Then, it executes the command that is passed as an argument. However, the program checks if the command contains `flag`, `sh`, or `tmp` and if it does, it returns. This means that we cannot execute the `flag` file, the `sh` command, or the `tmp` directory.
+The program first sets the `PATH` environment variable to `/thankyouverymuch`. Then, it executes the command that is passed as an argument. However, the program checks if the command contains `flag`, `sh`, or `tmp` and if it does, it returns.
 
 Our goal is to print the flag. However, since the `PATH` environment variable was changed, we can't just call `cat` or `ls` to print the flag - the shell will not be able to find the executable files. However, we can still use the `cat` command by using the absolute path to the executable file. 
 
