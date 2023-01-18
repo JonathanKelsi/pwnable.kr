@@ -50,7 +50,7 @@ total 16
 -r--r----- 1 fd_pwn root   50 Jun 11  2014 flag
 ```
 
-It looks like we have a binary file, a source code file, and a flag file. We cannot read the flag file, but we can read the source code and execute the binary file. Let's take a look at the source code:
+We have a binary file, a source code file, and a flag file. We cannot read the flag file, but we can read the source code and execute the binary file. Let's take a look at the source code:
 
 ```c
 #include <stdio.h>
@@ -78,7 +78,7 @@ int main(int argc, char* argv[], char* envp[]){
 
 It looks like the program expects a number as a command-line argument, and then it reads 32 bytes from the file descriptor ```fd```. If the input is equal to ```LETMEWIN```, then the program prints the flag. Otherwise, it prints a message.
 
-The file descriptor ```fd``` is calculated as ```atoi(argv[1]) - 0x1234```. This means that if we pass ```0x1234``` as a command-line argument, then ```fd``` will be ```0```. This means that the program will read from ```stdin```. Let's try it:
+The file descriptor ```fd``` is calculated as ```atoi(argv[1]) - 0x1234```. This means that if we pass ```0x1234``` as a command-line argument, then ```fd``` will be ```0``` and the program will read from ```stdin```. Let's try it:
 
 ```bash
 $ ./fd 4660
