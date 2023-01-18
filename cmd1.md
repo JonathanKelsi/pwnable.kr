@@ -69,7 +69,7 @@ Now that we can use the `cat` commnad, we need to figure out how to print the fl
 $ /bin/cat *
 ```
 
-Givin this command as an argument to the program will print the flag:
+Giving this command as an argument to the program will print the flag:
 
 ```bash
 $ ./cmd1 "/bin/cat *"
