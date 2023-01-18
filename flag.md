@@ -46,7 +46,7 @@ No symbol table is loaded. Use the "file" command.
 
 It looks the binary is stripped. Trying our luck with ```strings``` command, we get the following output:
 
-```bash
+```
 $ strings flag
 ...
 USQRH
@@ -59,7 +59,7 @@ j2AZE)
 ...
 ```
 
-It looks like the binary is **[packed](#executable-packers)** with UPX. Let's try to unpack it.
+It looks like the binary is *packed* with UPX. Let's try to unpack it.
 
 ```bash
 $ upx -d flag
