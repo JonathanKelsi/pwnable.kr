@@ -83,7 +83,7 @@ And so, our 5 numbers are `113626825` (four times) and `113626824` (once). Conve
 06 C5 CE C9 06 C5 CE C9 06 C5 CE C9 06 C5 CE C9 06 C5 CE C8
 ```
 
-We can use this password to get the flag:
+Here is a Python script that solves the challenge:
 
 ```py
 from pwn import *
