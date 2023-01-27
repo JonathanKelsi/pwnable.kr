@@ -100,7 +100,7 @@ p = con.process(['/home/input2/input'] + payload)
 
 ### stdio
 
-In the stdio stage, we need to send the following bytes to stdin and stderr: `\x00\x0a\x00\xff` and `\x00\x0a\x02\xff`. Passing the first one is easy, but the second one is a bit tricky. At first glance, it looks like we need to figure out how to write to stderr. But, since the program is running on a terminal, stderr is the same as stdout. So, we can just send the bytes to stdin, and the terminal will output them to stdout (which is the same as stderr).
+In the stdio stage, we need to send the following bytes to stdin and stderr: `\x00\x0a\x00\xff` and `\x00\x0a\x02\xff`. Passing the first one is easy, but the second one is a bit tricky. At first glance, it looks like we need to figure out how to write to stderr. But, since the program is running on a terminal, stderr is the same as stdout. So, we can just send the bytes to stdin, and the terminal will echo them to stdout (which is the same as stderr).
 
 ```python
 # stdio
