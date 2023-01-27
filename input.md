@@ -85,7 +85,7 @@ There are 5 different stages we need to pass in order to get the flag:
 
 ### argv  
 
-in the argv stage, we need to give a bunch of arguments to the program. We can get past using:
+in the argv stage, we need to give a bunch of arguments to the program. First, we need to make sure we give 100 arguments to the program. The first argument is the program's name, and the rest are ours. Then, the program expects the 65th argument to be `\x00` and the 66th argument to be `\x20\x0a\x0d`.
 
 ```python
 from pwn import *
@@ -97,8 +97,6 @@ con = ssh('input2', 'pwnable.kr', port=2222, password='guest')
 payload = ['A']*64 + ['\x00'] + ['\x20\x0a\x0d'] + ['A']*33
 p = con.process(['/home/input2/input'] + payload)
 ```
-
-First, we need to make sure we give 100 arguments to the program. The first argument is the program's name, and the rest are ours. Then, the program expects the 65th argument to be `\x00` and the 66th argument to be `\x20\x0a\x0d`.
 
 ### stdio
 
