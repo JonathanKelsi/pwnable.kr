@@ -122,7 +122,7 @@ So, if we chagne the value of `passcode1` to the address of a function in the `.
 
 The key to this exploit is observing that both `welcome()` and `login()` will have the same base pointer when called. Therefore, some of the stack will be the same. We can use this to our advantage.
 
-We will use the `welcome()` function save the address of `printf` in the `.got.plt` section inside the `passcode1` variable. Then, when scanf will be called in `login()`, we will enter the address of the call to `system("/bin/cat flag")`.
+We will use the `welcome()` function to save the address of `printf` in the `.got.plt` section inside the `passcode1` variable. Then, when scanf will be called in `login()`, we will enter the address of the call to `system("/bin/cat flag")`.
 
 Here are the relevant parts of the disassembly:
 
@@ -154,6 +154,10 @@ p = ssh.process(executable='./passcode')
 p.sendline('\x41' * 96 + '\x00\xa0\x04\x08' + '\n134514147')
 
 p.interactive()
+```
+
+```bash
+Sorry mom.. I got confused about scanf usage :(
 ```
 
 Note that we passed the second address as an integer because `scanf` uses `%d`.
