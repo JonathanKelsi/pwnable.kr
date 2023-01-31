@@ -10,6 +10,7 @@ Writeups of for pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable
 * [collision](collision.md)
 * [bof](bof.md)
 * [flag](flag.md)
+* [passcode](passcode.md)
 * [random](random.md)
 * [input](input.md)
 * [leg](leg.md)
