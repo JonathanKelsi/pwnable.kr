@@ -18,4 +18,5 @@ Writeups of for pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable
 * [blackjack](blackjack.md)
 * [lotto](lotto.md)
 * [cmd1](cmd1.md)
+* [cmd2](cmd2.md)
 * [blukat](blukat.md)
