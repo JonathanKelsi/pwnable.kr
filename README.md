@@ -1,6 +1,6 @@
 # pwnable.kr
 
-Writeups of for pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable.kr). Many thanks to the pwnable.kr team for providing such great challenges!
+Writeups of pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable.kr). Many thanks to the pwnable.kr team for providing such great challenges!
 
 ## Challenges
 
