@@ -100,3 +100,5 @@ Running the script, we get the flag:
 Congrats! get your flag
 b1NaRy_S34rch1nG_1s_3asy_p3asy
 ```
+
+I would like to dedicate this challenge to my friend [Lainad](https://github.com/Lainad27).
