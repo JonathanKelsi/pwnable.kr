@@ -96,7 +96,6 @@ while True:
     
     res = p.recvline().decode()
     
-        
     if 'bad' not in res:
         print(res)
         break

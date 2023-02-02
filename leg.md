@@ -16,7 +16,7 @@ leg - 2 pt
 
 #### Arm Assembly
 
-The ARM architecture is a 32-bit RISC architecture. It is a reduced instruction set computer (RISC) architecture, which means that it has a small number of simple instructions. The ARM architecture is used in many embedded systems, including mobile phones, tablets, and other devices.
+The ARM architecture is a 32-bit RISC architecture, Meaning that it has a small number of simple instructions. The ARM architecture is used in many embedded systems, including mobile phones, tablets, and other devices.
 
 #### ARM and THUMB modes    
 
@@ -96,7 +96,7 @@ Dump of assembler code for function key3:
    0x00008d38 <+24>:	bx	lr
 ```
 
-`key3()` retunrs the value of the link register, which is the return address of the function. Looking at the relevant part of the main:
+`key3()` returns the value of the link register, which is the return address of the function. Looking at the relevant part of the main:
 
 ```arm
 ...

@@ -85,7 +85,7 @@ There are 5 different stages we need to pass in order to get the flag:
 
 ### argv  
 
-in the argv stage, we need to give a bunch of arguments to the program. First, we need to make sure we give 100 arguments to the program. The first argument is the program's name, and the rest are ours. Then, the program expects the 65th argument to be `\x00` and the 66th argument to be `\x20\x0a\x0d`.
+in the argv stage, we need to give a bunch of (command-line) arguments to the program. First, we need to make sure we give 100 arguments to the program. Since the first argument is allways the program's name - we actually only need to give 99 arguments. Then, the program expects the 65th argument to be `\x00` and the 66th argument to be `\x20\x0a\x0d`.
 
 ```python
 from pwn import *
@@ -135,7 +135,7 @@ p = con.process(['/home/input2/input'] + payload, env={'\xde\xad\xbe\xef':'\xca\
 
 ### network
 
-In the network stage, the program opens a socket on the port specified in the 67th argument. Then, it waits for a connection, and reads 4 bytes from the connection. If the bytes are `\xde\xad\xbe\xef`, the program prints the flag. We can use netcat to connect to the port and send the bytes:
+In the network stage, the program opens a socket on the port specified in the 67th argument. Then, it waits for a connection, and reads 4 bytes from it. If the bytes are `\xde\xad\xbe\xef`, the program prints the flag. We can use netcat to connect to the port and send the bytes:
 
 ```python
 ...

@@ -50,7 +50,7 @@ total 16
 -r--r----- 1 fd_pwn root   50 Jun 11  2014 flag
 ```
 
-We have a binary file, a source code file, and a flag file. We cannot read the flag file, but we can read the source code and execute the binary file. Let's take a look at the source code:
+We have a binary file, a source code file, and a flag file. We cannot read the flag file, but we can read the source code and execute the binary. Let's take a look at the source code:
 
 ```c
 #include <stdio.h>

@@ -17,7 +17,7 @@ An environment variable is a variable whose value is set outside the program, ty
 
 #### PATH environment variable
 
-The `PATH` environment variable is a list of directories that the shell searches for executable files. The path environment variable is used to find the executable file that is to be executed when a command is entered. 
+The `PATH` environment variable is a list of directories that the shell searches in for executable files. It is used to find the executable file that is to be executed when a command is entered. 
 
 ### Exploit
 
@@ -61,9 +61,9 @@ int main(int argc, char* argv[], char** envp){
 
 The program first sets the `PATH` environment variable to `/thankyouverymuch`. Then, it executes the command that is passed as an argument. However, the program checks if the command contains `flag`, `sh`, or `tmp` and if it does, it returns.
 
-Our goal is to print the flag. However, since the `PATH` environment variable was changed, we can't just call `cat` to print the flag - the shell will not be able to find the executable files. However, we can still use the `cat` command by using the absolute path to the executable file. 
+Our goal is to print the flag. Since the `PATH` environment variable was changed, we can't just call `cat` to print the flag - the shell will not be able to find it. Nevertheless, we can still use the `cat` command by using the absolute path to the executable file. 
 
-Now that we can use the `cat` commnad, we need to figure out how to print the flag. We can't just `bin/cat flag` because the program checks if the command contains `flag`. However, we can use the `cat` command to print *everything* inside the current directory:
+Now that we can use the `cat` commnad, we need to figure out how to print the flag. We can't just `/bin/cat flag` because the program checks if the command contains `flag`. However, we can use the `cat` command to print *everything* inside the current directory:
 
 ```bash
 $ /bin/cat *

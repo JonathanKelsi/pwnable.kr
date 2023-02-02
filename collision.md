@@ -18,9 +18,7 @@ A hash function is a function that maps data of arbitrary size to data of a fixe
 
 For example, the MD5 hash of the string "Hello, world!" is `ed076287532e86365e841e92bfc50d8c`. MD5 is a cryptographic hash function with a 128-bit hash value, and it is one of the most widely used hash functions in the world.
 
-A hash collision is a pair of inputs that hash to the same value. For example, the strings "Hello, world!" and "Hello, world!!" both hash to `ed076287532e86365e841e92bfc50d8c`.
-
-Hash collisions are dangerous because they can be used to create fake data. For example, if a hash collision is found for a password hash, an attacker can use the collision to log in as the user with that password.
+A hash collision is a pair of inputs that hash to the same value. Hash collisions are dangerous because they can be used to create fake data. For example, if a hash collision is found for a password hash, an attacker can use the collision to log in as the user with that password.
 
 ### Exploit
 
@@ -75,7 +73,7 @@ The given hash function `check_password` is very simple. It devides the 20 byte 
 
 Our goal is to find a 20 byte password that hashes to `0x21DD09EC`. We can brute force this, but it will take a very long time. Since the hash function is very simple, we can just create a password that hashes to `0x21DD09EC` by hand.
 
-We need to find 5 numbers that sum up to `0x21DD09EC` (which is `568134124` in decimal). Dividing `568134124` by 5 gives us `113626824.8`. We can round this to `113626825`, and then subtract 1 from each of the 5 numbers to get `113626824`. 
+We need to find 5 numbers that sum up to `0x21DD09EC` (which is `568134124` in decimal). Dividing `568134124` by 5 gives us `113626824.8`. Rounding up we get `113626825`.
 
 And so, our 5 numbers are `113626825` (four times) and `113626824` (once). Converting these to hex gives us `0x06C5CEC9` and `0x06C5CEC8`. So, the bytes of our password are:
 

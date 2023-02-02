@@ -1,4 +1,4 @@
-# shellshcok
+# shellshock
 
 ## Description
 
