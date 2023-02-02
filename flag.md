@@ -36,7 +36,7 @@ $ ./flag
 I will malloc() and strcpy the flag there. take it.
 ```
 
-It appears that the program is going to malloc() and strcpy() the flag. Let's run it in gdb to see what's going on.
+It appears that the program is going to `malloc()` and `strcpy()` the flag. Let's run it in gdb to see what's going on.
 
 ```bash
 $ gdb ./flag
@@ -44,7 +44,7 @@ $ gdb ./flag
 No symbol table is loaded. Use the "file" command.
 ```
 
-It looks the binary is stripped. Trying our luck with ```strings``` command, we get the following output:
+The binary seems to be stripped. Trying our luck with ```strings``` command, we get the following output:
 
 ```
 $ strings flag
