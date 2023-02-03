@@ -2,6 +2,8 @@
 
 ## Description
 
+input - 4 pt
+
 > Mom? how can I pass my input to a computer program? <br> <br>
 > ssh input2@pwnable.kr -p2222 (pw:guest)
 
