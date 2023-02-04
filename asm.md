@@ -1,4 +1,4 @@
-# asm
+# bof
 
 ## Description
 
@@ -21,7 +21,7 @@ A syscall is a way for a program to interact with the operating system, and requ
 
 Syscalls are done by interrupting the processor, and passing control the kernel. The kernel will then execute the syscall, and return the result to the program. 
 
-In practice, the program will call `int` with the right interrupt nubmer - so the interrupt handler will be the kernel. Also, the program will pass the syscall number in the `eax` register, and the arguments in the other registers. The kernel will then execute the syscall, and return the result in the `eax` register.
+In practice, the program will call `int` with the right interrupt nubmer - so the interrupt handler will be the kernel. Then, the program will pass the syscall number in the `eax` register, and the arguments in the other registers. After that, the kernel will execute the syscall, and return the result in the `eax` register.
 
 #### seccomp
 
@@ -95,9 +95,9 @@ int main(int argc, char* argv[]){
 }
 ```
 
-It looks like the program takes a shellcode as input, and executes it. However, the a seccomp filter is applied, and the program is only allowed to use the syscalls `open`, `read`, `write`, `exit` and `exit_group`.
+It looks like the program takes a shellcode as input, and executes it. However, a seccomp filter is applied, and the program is only allowed to use the syscalls `open`, `read`, `write`, `exit` and `exit_group`.
 
-Also, the program uses `chroot` to run in `/home/asm_pwn`, so we can't use symlinks in `/tmp`.
+Also, the program uses `chroot` to run in `/home/asm_pwn`, so we can't use symlinks in `/tmp` (or can we?).
 
 Our goal is fairly simple: we need to make a shellcode that will open the flag file, read it, and print it to the screen using the `open`, `read` and `write` syscalls.
 
@@ -156,9 +156,9 @@ As we've already stated, the above shellcode reads the `/etc/passwd` file. We ne
 
 Before doing that, there are 2 observations we need to make here:
 
-* the path of the file read by the shellcode is stored in the very last bytes, and is terminated by the `A` character - to avoid a null byte.
+* the path of the file read by the shellcode is stored in the very last bytes, and is terminated by the `A` character - to avoid a null byte inside the shellcode.
 
-* the program `xor`s the last byte of the path with `0x41` - to avoid a null byte, and so if we change the length of the path, we need to change the offset of the `xor` instruction accordingly.
+* the program `xor`s the last byte of the path with `0x41` - to get that nullbyte back, and so if we change the length of the path, we need to change the offset of the `xor` instruction accordingly.
 
 Having that in mind, a quick modification of the shellcode is to change the path to `/tmp/a/flag`. The length of this new path is the same as `/etc/passwd`, so we don't need to change the offset of the `xor` instruction:
 
