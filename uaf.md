@@ -28,7 +28,7 @@ When a chunk is freed, it's added to a linked list of free chunks. When we alloc
 
 #### Use After Free
 
-Use After Free (UAF) is a vulnerability that occurs when we use a pointer to a freed chunk after it has been freed. Since the chunk is freed, it's added to the list of free chunks, and can be allocated again. 
+Use After Free (UAF) is a vulnerability that occurs when we use a pointer to a chunk after it has been freed. 
 
 A bug like this can be used in many ways. For example, if we allocate a new chunk of the same size as the freed chunk, it will be allocated in the same place as the freed chunk. Thus, we'll be able to control the data that the pointer points to, and possibly take control of the program.
 
@@ -167,7 +167,7 @@ Also, it appears that the first address of the `vtable` is the address of the `g
 
 So, if we manage to change the `vtable` pointer to point `0x8` bytes back, the offset `0x8` will make it point to the `give_shell` function.
 
-We need to find a way to change the `vtable` pointer. It seems that the `Man` and `Woman` objects are each `0x18` bytes long. So, if we'll use the `3`rd option to free them, and then allocate 2 chunks of `0x18` bytes, those chunks will be allocated in the same place as the `Man` and `Woman` objects.
+It seems that the `Man` and `Woman` objects are each `0x18` bytes long. So, if we'll use the `3`rd option to free them, and then allocate 2 chunks of `0x18` bytes, those chunks will be allocated in the same place as the `Man` and `Woman` objects.
 
 Since the `2`nd option not only gives us the choice of how many bytes to allocate, but also the choice of which file to read into the allocated memory, we can use it to allocate 2 `0x18` byte chunks, that look like this:
 
