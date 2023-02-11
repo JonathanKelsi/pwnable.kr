@@ -26,8 +26,6 @@ The first 2 words are the header, and the rest is the data. It's important to no
 
 When a chunk is freed, it's saved in a (dounle) linked list. When we allocate memory on the heap, the allocator will search that list for a chunk that is big enough to hold the requested size. If it finds one, it will remove it from the list and return it to the user. If it doesn't find one, it will allocate a new chunk from the end of the heap.
 
-Also, while not relevant to this challenge, it's important to note that when a chunk is freed, the heap manager will check if the previous chunk is free. If it is, it will merge them into one chunk. This is called coalescing.
-
 #### Use After Free
 
 Use After Free (UAF) is a vulnerability that occurs when we use a pointer to a chunk after it has been freed. 
