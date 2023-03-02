@@ -15,16 +15,35 @@ uaf - 8 pt
 
 The heap is a region of memory that is dynamically allocated and deallocated by the program. We can allocate memory on the heap by calling `malloc` and free it by calling `free`. Note that the memory allocated by malloc is always aligned to 8 bytes.
 
-The memory in the heap is stored in chunks. Each chunk has a header, that contains information about the chunk (such as it's size), and the data itself. for example, here is a chunk of size 0x20:
+The memory in the heap is stored in chunks. Each chunk has a header, that contains information about the chunk (such as it's size) and then the data itself. for example, here is a chunk of size 0x20:
 
 ```
 0x614ed4:       0x00000000      0x00000021      0x00000000      0x00000614
 0x614ee4:       0x00000000      0x2b63ba16      0x4f1d11e4      0x00614ec8
 ```
 
-The first 2 words are the header, and the rest is the data. It's important to note that the last two bits of the size is have special meaning. Most importantly, the least signifcant bit is used to indicate whether the last chunk is free or not. If it's 1, it's free, if it's 0, it's allocated. 
+The three least significant bits of the size have special meaning. Most importantly, the least signifcant bit is used to indicate whether the last chunk is free or not. If it's 1, it's free, if it's 0, it's allocated. 
 
-When a chunk is freed, the heap manager saves its location. When we allocate memory on the heap, the allocator will search if we freed a chunk that is big enough to hold the requested size. If it doesn't find one, it will allocate a new chunk from the end of the heap.
+When we allocate memory on the heap, the allocator will search if there is a previously-freed chunk big enough to hold the requested size. If it doesn't find one, it will allocate a new chunk from the end of the heap.
+
+In order to be able to find freed chunks, the allocator tracks them in a series of linked lists called bins.
+
+Before we go into the bins, we need to discuss further the structure of the chunks. As we've stated before, each chunk stores metadat along with the data itself. Well, free chunks too store metadata. Like live allocated chunks, they store the size of the chunk with the three special bits. However, they also store information after the user data region using a technique called “boundary tags”. These boundary tags carry size information before and after the chunk. Thus, chunks can be traversed from any known chunk to any direction, which enables very fast coalescing of adjacent free chunks.
+
+As we stated before, the free chunks are stored in bins that operate as linked lists. So, each free chunk needs to store pointers to other chunks. Since the user data in a free chunk is free, the heap manager repurposes it as the place where this additional metadata lives.
+
+There are 5 types of bins:
+
+* **Small bins:** There are 62 of them, and each small bin stores chunks that are all the same fixed size. Every chunk less than 512 bytes on 32-bit systems (or than 1024 bytes on 64-bit systems) has a corresponding small bin. Since each small bin stores only one size of chunks, insertions and removals are very fast.
+
+* **Large bins:** For chunks over 512 bytes (1024 bytes on 64-bit), the heap manager instead uses “large bins”. Each of the 63 “large bins” operates mostly the same way as small bins, but instead of storing chunks with a fixed size, they instead store chunks within a size range. Because of this, insertions onto the bin have to be manually sorted, and allocations from the bin have to be manually searched.	
+
+* **Unsorted bin:** An optimization cache layer. Instead of immediately putting newly freed chunks onto the correct bin, the heap manager merges it with neighbors, and dumps it onto a general unsorted linked list. During malloc, each item on the unsorted bin is checked to see if it “fits” the request. If it does, malloc can use it immediately. If not, it is removed from the unsorted bin and placed in the correct bin.
+
+* **Fast bins:** Further optimization. These bins keep recently released small chunks, intentionally keeping the chunk alive and not merging it with its neighbors so that it can be immediately repurposed. Like small bins, each fast bin is responsible for a single size of chunk. There are 10 fast bins. In practice, the way fast bins work is the heap manager doesn't set the last bit of the size field of the chunk header to 1, so the chunk is not considered free. Also, since fast-binned chunks are never merged, they can be saved in a singly-linked list, rather than a doubly one. The downside is that fast bins are not truely freed, which can cause the memory to balloon overtime. To resolve this, the heap manager "flushes" the fast bins every so often. 
+
+* **Tcache bins:** On a multithreaded program, the heap can't simply use the bins mentioned above, as they are not thread-safe. That is, a race condition can occur if two threads try to allocate or free memory at the same time. Alas, using locks is not a viable solution, as it would slow down the program. To solve this, the heap manager uses per-thread arenas where each thread gets its own arena until it hits the threshold. Additionaly, per-thread caching speeds up allocations by having per-thread bins of small chunks ready-to-go. And so, when a chunk is freed, the heap manager tries to place it in the appropriate tcache bin. If it is full or the chunk is too big for a tcache bin, the heap manager reverts to our old slow-path strategy of obtaining the heap lock and then processing the chunk as before.
+
 
 #### Use After Free
 
