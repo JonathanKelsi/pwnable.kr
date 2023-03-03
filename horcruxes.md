@@ -114,7 +114,7 @@ The functions `A`, ..., `G` are all the very similar. They all print a message, 
 
 At a first glance, it seems that the ROP is very simple - we overflow on `gets(v4)` and overwrite the return address jumping to the `v6 = open("flag", 0);` line. However, there is a problem - in the `ropme` function, all of the addresses are of the format `0x80a0XXX`. Since `0a` is also the ascii code of `\n`, we can't use it in our payload.
 
-And so, the solution is to jump to each and every of the functions `A`, ..., `G`, sum the values of `a`, ..., `g`, and then jump to the call to `ropme` from the `main` function (since we can't jump anywhere inside `ropme`). Then, we will insert the sum and get the flag.
+And so, the solution is to jump to each and every one of the functions `A`, ..., `G`, sum the values of `a`, ..., `g`, and then jump to the call to `ropme` from the `main` function (since we can't jump anywhere inside `ropme`). Then, we will insert the sum and get the flag.
 
 As we mentioned before, we need to consider stack alignment. Everytime we want to jump anywhere, we must first jump to a return instruction, and then to the address we want to jump to.
 Here is the exploit:
