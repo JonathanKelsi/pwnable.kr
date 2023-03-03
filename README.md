@@ -25,3 +25,9 @@ Writeups of pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable.kr)
 * [asm](asm.md)
 * [blukat](blukat.md)
 * [horcruxes](horcruxes.md)
+
+**Note**: As per the site's rules, I will post write ups for challenges in other categories only if there are easily accessible solutions for them on the internet.
+
+### Grotesque
+
+* [coin2](coin2.md)
