@@ -69,7 +69,7 @@ void play() //Plays game
 
 It looks like we can bet as much money as we want - as long as it's less than the amount of money we have, and if we lose the game we lose the amount we bet.
 
-Thus, we can bet a negative amount of money and lost the game. This will cause the `cash` variable to be *increased* by the positive value of the bet, and we will be able to get the flag. 
+Thus, we can bet a negative amount of money and lose the game. This will cause the `cash` variable to be *increased* by the positive value of the bet, and we will be able to get the flag. 
 
 ```bash
 $ nc pwnable.kr 9009
