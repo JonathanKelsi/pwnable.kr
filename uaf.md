@@ -15,7 +15,7 @@ uaf - 8 pt
 
 The heap is a region of memory that is dynamically allocated and deallocated by the program. We can allocate memory on the heap by calling `malloc` and free it by calling `free`. Note that the memory allocated by malloc is always aligned to 8 bytes.
 
-The memory in the heap is stored in chunks. Each chunk has a header, that contains information about the chunk (such as it's size) and then the data itself. for example, here is a chunk of size 0x20:
+The memory in the heap is stored in chunks. Each chunk has a header, that contains the size of the previous chunk, information about the chunk (such as it's size) and then the data itself. for example, here is a chunk of size 0x20:
 
 ```
 0x614ed4:       0x00000000      0x00000021      0x00000000      0x00000614
