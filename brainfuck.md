@@ -133,7 +133,7 @@ Looking at the binary using IDA's A view, it seems that the `tape` is, in fact, 
 
 So let's do the following: 
 * move `p` to point at one of the libc functions at the PLT - like `puthcar` for example.
-* call the function so it's address we'll be loaded correctly at the PLT (lazy loading...)
+* call the function so it's address will be loaded correctly at the PLT (lazy loading...)
 * leak it using the `.` command
 * update some addresses at the PLT: 
     * `putchar` --------> `main`
