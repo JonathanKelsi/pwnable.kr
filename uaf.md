@@ -28,7 +28,7 @@ When we allocate memory on the heap, the allocator will search if there is a pre
 
 In order to be able to find freed chunks, the allocator tracks them in a series of linked lists called bins.
 
-Before we go into the bins, we need to discuss further the structure of the chunks. As we've stated before, each chunk stores metadat along with the data itself. Well, free chunks too store metadata. Like live allocated chunks, they store the size of the chunk with the three special bits. However, they also store information after the user data region using a technique called “boundary tags”. These boundary tags carry size information before and after the chunk. Thus, chunks can be traversed from any known chunk to any direction, which enables very fast coalescing of adjacent free chunks.
+Before we go into the bins, we need to discuss further the structure of the chunks. As we've stated before, each chunk stores metadata along with the data itself. Well, free chunks too store metadata. Like live allocated chunks, they store the size of the chunk with the three special bits. However, they also store information after the user data region using a technique called “boundary tags”. These boundary tags carry size information before and after the chunk. Thus, chunks can be traversed from any known chunk to any direction, which enables very fast coalescing of adjacent free chunks.
 
 As we stated before, the free chunks are stored in bins that operate as linked lists. So, each free chunk needs to store pointers to other chunks. Since the user data in a free chunk is free, the heap manager repurposes it as the place where this additional metadata lives.
 

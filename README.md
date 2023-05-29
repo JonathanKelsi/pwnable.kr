@@ -28,6 +28,13 @@ Writeups of pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable.kr)
 
 **Note**: As per the site's rules, I will post write ups for challenges in other categories only if there are easily accessible solutions for them on the internet.
 
+### Rookiss
+
+* [brainfuck](brainfuck.md)
+* [simple login](simple_login.md)
+* [fix](fix.md)
+* [echo1](echo1.md)
+
 ### Grotesque
 
 * [coin2](coin2.md)
