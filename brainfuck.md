@@ -142,14 +142,14 @@ So let's do the following:
 * call putchar by giving `.`
 * give `fgets` `/bin/sh` as input
 
-If you are wondering why should we do these redirections - recall the calls to `fgets` and `memset` in `main`:
+If you are wondering why should we do these "redirections" - recall the calls to `fgets` and `memset` in `main`:
 
 ```c
 memset(v5, 0, sizeof(v5));
 fgets(v5, 1024, stdin);
 ```
 
-Both functions give the local buffer as the first arguments. After the redirecting of the PLT, `memset` will call `gets` - which will allow us to write to the buffer `/bin/sh`, and `fgets` will call `system` - which will execute `/bin/sh`.
+Both functions give the local buffer as the first arguments. After the changing the PLT, `memset` will call `gets` - which will allow us to write to the buffer `/bin/sh`, and `fgets` will call `system` - which will execute `/bin/sh`.
 
 **Side Note:** When I first attempted this challenge, I tried to leak the address of `memset` instead of `putchar` (not sure why). Anyhow, the exploit didn't work and I spent a couple of hours debugging. Then, I noticed that `memset`'s address was *way* off from the other libc functions - which made me realise it was probably linked from another library. 
 
