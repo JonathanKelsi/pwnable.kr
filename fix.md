@@ -95,7 +95,7 @@ Upon further investigation, by debugging the program, it seems the segmentation 
 
 To fix it, we need to move the stack pointer elsewhere, so it won't point at the shellcode itself, while maintaining the integrity of the shellcode. 
 
-If we could somehow move the stack pointer so it'll point to a place where all the bytes are zero, then - for example - the second `push %eax` instruction will be meaningless. In other words, we need to change the second `pop %eax` instruction to some instruction that'll make the `%esp` point to a place where all the bytes are zero (and is writable).
+If we could somehow move the stack pointer so it'll point to a place where all the bytes are zero, then - for example - the second `push %eax` instruction will be meaningless. In other words, if we change the second `pop %eax` instruction to some instruction that'll make the `%esp` point to a place where all the bytes are zero (and is writable) - we win 💪.
 
 One way we could do this is by disabling the stack limit, and changing the `pop %eax` to a `pop %esp` (which unsurprisingly both have one byte long opcode).
 
