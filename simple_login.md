@@ -81,11 +81,11 @@ void __noreturn correct()
 }
 ```
 
-So, the program reads 30 bytes from the user and decodes them from base64, and initializes `input` to 0. Then, if the length of the decoded string is less or equal to 12 bytes, it copies it to `input` and calls the `auth` function. 
+So, the program reads 30 bytes from the user, decodes them from base64, and initializes `input` to 0. Then, if the length of the decoded string is less or equal to 12 bytes, it copies it to `input` and calls the `auth` function. 
 
-The `auth` function copies the `input` to a local variable, and then calls the `calc_md5` function on it. It then compares the result to the string `f87cd601aa7fedca99018a8be88eda34`. If the comparison is successful, it calls the `correct` function.
+The `auth` function copies `input` to a local variable, and then calls the `calc_md5` function on it. It then compares the result to the string `f87cd601aa7fedca99018a8be88eda34`. If the comparison is successful, it calls the `correct` function.
 
-The `correct` function checks if `input` is equal to `-559038737`. If it is, it prints the flag and calls `system("/bin/sh")`.
+The `correct` function checks if `input` (or being more precise, it's first four bytes) is equal to `-559038737`. If it is, it prints the flag and calls `system("/bin/sh")`.
 
 ### Exploit
 
