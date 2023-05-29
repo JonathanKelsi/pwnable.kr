@@ -110,7 +110,7 @@ __int64 echo2()
 ```
 echo3 is the same, byebye and greetings are simply printing strings, and get_input is a wrapper for fgets.
 
-The program allocates a 5 * 8 bytes buffer (or in other words, a buffer that stores 5 addresses). In the last two indexes of the buffer, it stores the addresses of the `greetings` and `byebye` functions. Then, it reads 24 bytes from the user into the first three indexes of the buffer, and stores the address in the buffer at `id`.
+The program allocates a 5 * 8 bytes buffer (or in other words, a buffer that stores 5 addresses). In the last two indexes of the buffer, it stores the addresses of the `greetings` and `byebye` functions. Then, it reads 24 bytes from the user into the first three indexes of the buffer, and stores the first 8 bytes of the buffer at `id`.
 
 After that, the program enters a loop in which it prompts the use for an index, and according to that index it does one of the following:
 * calls `echo1`
