@@ -13,22 +13,14 @@ simple login - 50 pt
 
 ### Understanding the binary
 
-As stated in the description, we are given a the binary file running on the server. Let's start by checking what kind of file it is:
+As stated in the description, we are given a binary file. Let's start by checking what kind of file it is:
 
 ```bash
 $ file login
 login: ELF 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux), statically linked, for GNU/Linux 2.6.24, BuildID[sha1]=e09ec7145440153c4b3dedc3c7a8e328d9be6b55, not stripped
 ```
 
-Nothing special here, it's a 32-bit ELF executable. Let's check the security features:
-
-```bash
-$ checksec --file=login
-RELRO           STACK CANARY      NX            PIE
-Partial RELRO   Canary found      NX enabled    No PIE
-```
-
-Since the NX bit is enabled, and there's a canary, but there is partial RELRO, this probably will have to do something with overwriting the PLT. Let's check the binary in IDA.
+Nothing special here, it's a 32-bit ELF executable. Here is the decompilation provided by IDA:
 
 **main:**
 ```c
