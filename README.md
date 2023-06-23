@@ -34,6 +34,7 @@ Writeups of pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable.kr)
 * [simple login](simple_login.md)
 * [fix](fix.md)
 * [echo1](echo1.md)
+* [echo2](echo2.md)
 
 ### Grotesque
 
