@@ -32,6 +32,7 @@ Writeups of pwnable.kr challenges, avialable at [pwnable.kr](https://pwnable.kr)
 
 * [brainfuck](brainfuck.md)
 * [simple login](simple_login.md)
+* [fsb](fsb.md)
 * [fix](fix.md)
 * [echo1](echo1.md)
 * [echo2](echo2.md)
