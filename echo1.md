@@ -16,7 +16,7 @@ echo1 - 25 pt
 Let's start by checking what kind of file it is:
 
 ```bash
-$ file login
+$ file echo1
 echo1: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=fa367b7e8f66b68737a56333996d80f0d72e54ea, not stripped
 ```
 
@@ -87,7 +87,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 ```
 
 **echo1:**
-```
+```c
 __int64 echo1()
 {
   char s[32]; // [rsp+0h] [rbp-20h] BYREF
@@ -101,7 +101,7 @@ __int64 echo1()
 ```
 
 **echo2:**
-```
+```c
 __int64 echo2()
 {
   puts("not supported");
