@@ -71,11 +71,11 @@ def search(nc, N, C):
     sets = []
 
     for i in range(C):
-        power, temp = pow(2, i), []
+        power, temp = pow(2, i), set()
         
         for n in range(N):
             if (n % (power * 2)) <= power - 1:
-                temp.append(n)
+                temp.add(n)
             
         sets.append(temp)
     
@@ -86,16 +86,16 @@ def search(nc, N, C):
     res = [int(_) for _ in nc.recvline().decode().split('-')]
     
     # find where the fake coin is
-    contendors = [_ for _ in range(N)]
+    contendors = set(_ for _ in range(N))
     
     for i in range(C):
         if res[i] % 10 == 0:
-            contendors = list(set(contendors) - set(sets[i]))
+            contendors -= sets[i]
         else:
-            contendors = list(set(contendors) & set(sets[i]))
+            contendors &= sets[i]
             
     # send the index of the fake coin to the server
-    nc.sendline(str(contendors[0]).encode())
+    nc.sendline(str(contendors.pop()).encode())
     
     # receive the response
     nc.recvline()
@@ -108,12 +108,11 @@ def exploit():
     for i in range(100):
         match = re.search('N=([0-9]*) C=([0-9]*)', nc.recvline().decode())
         N, C = int(match.group(1)), int(match.group(2))
-        print('HERE')
         search(nc, N, C)
+        print('[+] Round {0} done'.format(i + 1))
         
     nc.interactive()
-
-
+    
 exploit()
 ```
 
