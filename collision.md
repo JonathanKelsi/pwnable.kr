@@ -75,11 +75,7 @@ Our goal is to find a 20 byte password that hashes to `0x21DD09EC`. We can brute
 
 We need to find 5 numbers that sum up to `0x21DD09EC` (which is `568134124` in decimal). Dividing `568134124` by 5 gives us `113626824.8`. Rounding up we get `113626825`.
 
-And so, our 5 numbers are `113626825` (four times) and `113626824` (once). Converting these to hex gives us `0x06C5CEC9` and `0x06C5CEC8`. So, the bytes of our password are:
-
-```
-06 C5 CE C9 06 C5 CE C9 06 C5 CE C9 06 C5 CE C9 06 C5 CE C8
-```
+And so, our 5 numbers are `113626825` (four times) and `113626824` (once). Converting these to hex gives us `0x06C5CEC9` and `0x06C5CEC8`. 
 
 Here is a Python script that solves the challenge:
 
@@ -88,7 +84,7 @@ from pwn import *
 
 con = ssh('col', 'pwnable.kr', port=2222, password='guest')
 
-p = con.process(['col', '\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC8\xCE\xC5\x06'])
+p = con.process(['col', '\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC8\xCE\xC5\x06']) # little endian :)
 
 print(p.recvall())
 ```
