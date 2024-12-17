@@ -84,7 +84,8 @@ from pwn import *
 
 con = ssh('col', 'pwnable.kr', port=2222, password='guest')
 
-p = con.process(['col', '\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC8\xCE\xC5\x06']) # little endian :)
+# don't forget about endianness :)
+p = con.process(['col', '\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC9\xCE\xC5\x06\xC8\xCE\xC5\x06'])
 
 print(p.recvall())
 ```
